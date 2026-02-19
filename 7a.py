@@ -1,19 +1,15 @@
-from bokeh.plotting import figure, output_file, show 
+from bokeh.plotting import figure, show
 from bokeh.models import Label
-# Sample data
-x = [1, 2, 3, 4, 5] 
-y = [2, 4, 6, 8, 10]
-# Output to static HTML file 
-output_file("line_graph_with_annotations.html")
-# Create a figure
-p = figure(title="Bokeh Line Graph with Annotations", x_axis_label='X-axis', y_axis_label='Y- axis')
-# Plot the line
-p.line(x, y, line_width=2, line_color="blue", legend_label="Line Function: y = 2x")
-# Add an annotation
-annotation = Label(x=3, y=6, text="Important Point", text_font_size="10pt", text_color="red")
-p.add_layout(annotation)
-# Add legend 
-p.legend.location = "top_left" 
+
+# 1. Setup Data & Figure
+p = figure(title="Line Graph", x_axis_label='X', y_axis_label='Y')
+
+# 2. Draw Line
+p.line([1, 2, 3, 4, 5], [2, 4, 6, 8, 10], legend_label="y=2x", line_width=2)
+
+# 3. Add Simplified Annotation
+p.add_layout(Label(x=3, y=6, text="Point", text_color="red"))
+
+# 4. Settings & Show
 p.legend.click_policy = "hide"
-# Show the plot 
 show(p)
